@@ -1,0 +1,87 @@
+java 8 :-
+
+Install Oracle Java with a PPA:
+
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt update
+sudo apt install oracle-java8-installer
+
+And configure alternatives for Java
+
+sudo update-alternatives --config java
+
+sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/java-8-oracle/bin/javac" 1 
+sudo update-alternatives --set javac /usr/lib/jvm/java-8-oracle/bin/javac
+
+sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/java-8-oracle/bin/javaws" 1
+sudo update-alternatives --set javaws /usr/lib/jvm/java-8-oracle/bin/javaws
+
+
+java 7 :-
+
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt update
+sudo apt install oracle-java7-installer
+sudo apt install oracle-java7-set-default // for setting path automaticaly
+
+
+Tomcat7 :-
+
+http://tecadmin.net/install-tomcat-7-on-ubuntu/#
+
+cd /opt
+sudo wget http://www.us.apache.org/dist/tomcat/tomcat-7/v7.0.69/bin/apache-tomcat-7.0.69.tar.gz
+sudo tar zxf apache-tomcat-7.0.69.tar.gz
+sudo mv apache-tomcat-7.0.69 tomcat7
+sudo rm apache-tomcat-7.0.69.tar.gz
+
+cd tomcat7/bin/
+sudo sh startup.sh
+cd ../conf/
+sudo gedit tomcat-users.xml
+
+paste:
+# user manager can access only manager section.
+<role rolename="manager-gui" />
+<user username="admin" password="admin" roles="manager-gui" />
+
+# user admin can access manager and admin section both.cd..
+<role rolename="admin-gui" />
+<user username="admin" password="admin" roles="manager-gui,admin-gui" />
+
+
+Configure CLASSPATH & JDBC :-
+
+sudo apt install libmysql-java
+install java.lang package from synaptic
+
+To set CLASSPATH :
+
+sudo gedit /etc/profile
+add this 2 lines in the file, save and close
+
+export CLASSPATH=/opt/tomcat7/lib/*.jar:/opt/tomcat7/lib/servlet-api.jar:/opt/tomcat7/lib/tomcat-jdbc.jar:/opt/tomcat7/lib/tomcat-api.jar:/usr/share/java/mysql-connector-java.jar:/usr/share/java/*.jar:/usr/share/java/mysql-connector-java-5.1.32.jar:/usr/share/java/mysql.jar:/usr/share/java/jayatannaag.jar:/usr/share/java/commons-lang.jar:/usr/share/java/commons-lang-2.6.jar:/usr/share/java/jayatana.jar
+
+
+Run command -
+. /etc/profile (run only if classpath not set after restart)
+restart computer.
+
+echo $CLASSPATH
+add any number of jar files sperrated by : not any space
+
+
+JDBC lang exception problem:(try this first)
+link -> https://scottlinux.com/2014/02/20/tomcat-on-debian-and-ubuntu-linux-fix-broken-com-mysql-jdbc-driver-connection/
+shared.loader=/opt/tomcat7/lib,/opt/tomcat7/lib/*.jar,/usr/share/java/*.jar
+
+
+MYSQL :-
+
+sudo apt install mysql-server
+sudo apt install mysql-client
+sudo apt install mysql-workbench
+
+open: mysql -u root -p
+restart: sudo service mysql restart
+

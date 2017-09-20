@@ -1,0 +1,186 @@
+
+LINKS :-
+
+Ubuntu Installation guide :
+https://www.youtube.com/watch?v=0W7XYAB4cLc
+
+http://www.omgubuntu.co.uk/2016/04/10-things-to-do-after-installing-ubuntu-16-04-lts
+
+https://www.unixmen.com/top-things-installing-ubuntu-16-04/
+
+http://itsfoss.com/things-to-do-after-installing-ubuntu-16-04/
+
+
+STEPS :-
+
+1) Add canonical packages
+	Software & Updates > other Softwares > mark to install
+
+2) sudo apt update
+   sudo apt upgrade
+   sudo apt dist-upgrade
+
+3) Basic software install :
+
+	sudo apt update
+	sudo apt install ubuntu-restricted-extras
+	sudo apt install unity-tweak-tool
+	sudo apt install synaptic
+	sudo apt install vlc
+	sudo apt install chromium-browser
+	sudo apt install pinta
+	sudo apt install tree
+	sudo apt install nvidia-settings
+
+	sudo apt update
+	sudo apt-get install google-chrome-stable
+	sudo apt install git
+	sudo apt -y install python-pip
+	sudo apt install ruby-full
+	sudo apt install rubygems
+	sudo apt install gksu
+
+	sudo apt remove transmission-gtk
+	sudo apt install deluge
+
+	sudo apt install geany
+	Paste contents of colorscheme in /usr/share/geany/colorscheme/*
+
+	sudo apt remove laptop-mode-tools
+	sudo add-apt-repository ppa:linrunner/tlp
+	sudo apt update
+	sudo apt install tlp tlp-rdw
+	sudo tlp start	
+
+	sudo add-apt-repository ppa:webupd8team/sublime-text-3
+	sudo apt update
+	sudo apt install sublime-text-installer
+
+	key:
+	—– BEGIN LICENSE —–
+	Michael Barnes
+	Single User License
+	EA7E-821385
+	8A353C41 872A0D5C DF9B2950 AFF6F667
+	C458EA6D 8EA3C286 98D1D650 131A97AB
+	AA919AEC EF20E143 B361B1E7 4C8B7F04
+	B085E65E 2F5F5360 8489D422 FB8FC1AA
+	93F6323C FD7F7544 3F39C318 D95E6480
+	FCCC7561 8A4A1741 68FA4223 ADCEDE07
+	200C25BE DBBC4855 C4CFB774 C5EC138C
+	0FEC1CEF D9DCECEC D3A5DAD1 01316C36
+	—— END LICENSE ——
+
+	sudo apt autoremove
+	sudo apt clean
+	sudo apt autoclean
+
+
+PROBLEMS :-
+
+1). Brightness adjustment problem :
+
+	sudo gedit /etc/default/grub
+	change -
+	GRUB_CMDLINE_LINUX_DEFAULT="quiet splash" to
+	GRUB_CMDLINE_LINUX_DEFAULT="quiet splash acpi_backlight=vendor"
+
+	sudo update-grub
+
+2). Grub auto-selected option :
+
+	sudo gedit /etc/default/grub
+	change GRUB_DEFAULT=0 from 0 to any number(5), corresponding to the entry in the Grub bootup menu (first entry is 0, second is 1, etc.)
+	sudo update-grub
+
+3). dpkg lock problem : (answer 2)
+	https://askubuntu.com/questions/15433/unable-to-lock-the-administration-directory-var-lib-dpkg-is-another-process
+
+
+
+4). Incorrect time problem in ubuntu and win7 dual boot
+	http://www.webupd8.org/2014/09/dual-boot-fix-time-differences-between.html
+	timedatectl set-local-rtc 1
+
+5). create new document missing form right click menu
+	See if you have ~/Templates folder. Create one if it is missing.
+	Now create an empty file from command prompt: touch ~/Templates/Text\ File.txt	
+	"Create Document" option is back again and you can create a new text file or a new document.
+
+
+
+RECOMMENDATIONS :-
+
+1). Shorten terminal line :
+	sudo gedit ~/.bashrc
+	replace both PS1="..." with
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@:\W\$ '
+fi
+
+
+2). Set elementary os icons :
+	sudo nautilus
+	copy custom elementry os icon folder to usr/share/icons/
+
+3). Set default apps :
+	settings > details > default apps
+
+4). Configure Terminal :
+	Edit > Preference > shortcuts > (copy - ctrl+C, paste - ctrl+P)
+	Edit > Profile Preference > Set Color
+
+5). Install moka icon them and numix theme
+	
+	sudo add-apt-repository ppa:moka/stable
+	sudo apt-get update
+	sudo apt-get install moka-icon-theme
+
+	sudo add-apt-repository ppa:moka/daily
+	sudo apt-get update
+	sudo apt-get install moka-icon-theme
+
+	sudo add-apt-repository ppa:numix/ppa
+	sudo apt-get update
+	sudo apt-get install numix-gtk-theme
+
+for paper theme follow 
+
+https://github.com/snwh/paper-gtk-theme
+
+sudo add-apt-repository ppa:snwh/pulp
+# update repository info
+sudo apt-get update
+# install icon theme
+sudo apt-get install paper-icon-theme
+# install gtk theme
+sudo apt-get install paper-gtk-theme
+# install cursor theme
+sudo apt-get install paper-cursor-theme
+
+
+
+6). Configure more from System Settings and tweak tool
+
+7) give root acces to application (example of sublime):
+follow this -> https://askubuntu.com/questions/769080/run-sudo-arduino-with-desktop-file
+
+	sudo mv /usr/share/applications/sublime-text.desktop ~/.local/share/applications
+	sudo gedit ~/.local/share/applications/sublime-text.desktop
+	
+	and add a section at the bottom of the file:
+
+		Actions=Sublime with sudo;
+
+		[Desktop Action Sublime with sudo]
+		Name=Sublime with sudo
+		Exec=gksu subl
+		OnlyShowIn=Unity;
+
+	Now arduino runs "normally" when you click on it, but has the right-click option to run with sudo:
+
+
+

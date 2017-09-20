@@ -1,0 +1,8 @@
+HOW TO SETUP BIOS FOR UBNUTU SETUP(along with windows 10 (lenovo 510):
+
+1. disable fast startup from windows 10
+2). open BIOS
+3). You will see boot mode is set to UEFI (pic1) set it to legacy support (pic2)
+4). now go to security and dissable secure boot and set other setting shon in (pic3).
+5). go back to boot and enable UEFI mode and set ubuntu as 1st EFI(pic1).
+6). save & exit, restart it to find grb of UBUNTU loaded.
