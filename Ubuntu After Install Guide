@@ -13,6 +13,9 @@ http://itsfoss.com/things-to-do-after-installing-ubuntu-16-04/
 
 STEPS :-
 
+
+>> switch to gnome then proceed
+
 1) Add canonical packages
 	Software & Updates > other Softwares > mark to install
 
@@ -25,26 +28,26 @@ STEPS :-
 	sudo apt update
 	sudo apt install ubuntu-restricted-extras
 	sudo apt install unity-tweak-tool
-	sudo apt install synaptic
+	*sudo apt install synaptic
 	sudo apt install vlc
-	sudo apt install chromium-browser
 	sudo apt install pinta
 	sudo apt install tree
-	sudo apt install nvidia-settings
+	*sudo apt install nvidia-settings
 
-	sudo apt update
-	sudo apt-get install google-chrome-stable
+	Download .deb file from https://www.google.com/chrome/browser/desktop/index.html
+	double click on the package to install
+
 	sudo apt install git
-	sudo apt -y install python-pip
-	sudo apt install ruby-full
-	sudo apt install rubygems
+	*sudo apt -y install python-pip
+	*sudo apt install ruby-full
+	*sudo apt install rubygems
 	sudo apt install gksu
 
 	sudo apt remove transmission-gtk
 	sudo apt install deluge
 
-	sudo apt install geany
-	Paste contents of colorscheme in /usr/share/geany/colorscheme/*
+	*sudo apt install geany
+	*Paste contents of colorscheme in /usr/share/geany/colorscheme/*
 
 	sudo apt remove laptop-mode-tools
 	sudo add-apt-repository ppa:linrunner/tlp
@@ -52,6 +55,7 @@ STEPS :-
 	sudo apt install tlp tlp-rdw
 	sudo tlp start	
 
+	FInd .deb of the sublime text 3 online double click to install
 	sudo add-apt-repository ppa:webupd8team/sublime-text-3
 	sudo apt update
 	sudo apt install sublime-text-installer
@@ -69,6 +73,20 @@ STEPS :-
 	FCCC7561 8A4A1741 68FA4223 ADCEDE07
 	200C25BE DBBC4855 C4CFB774 C5EC138C
 	0FEC1CEF D9DCECEC D3A5DAD1 01316C36
+	—— END LICENSE ——
+
+	—– BEGIN LICENSE —–
+	TwitterInc
+	200 User License
+	EA7E-890007
+	1D77F72E 390CDD93 4DCBA022 FAF60790
+	61AA12C0 A37081C5 D0316412 4584D136
+	94D7F7D4 95BC8C1C 527DA828 560BB037
+	D1EDDD8C AE7B379F 50C9D69D B35179EF
+	2FE898C4 8E4277A8 555CE714 E1FB0E43
+	D5D52613 C3D12E98 BC49967F 7652EED2
+	9D2D2E61 67610860 6D338B72 5CF95C69
+	E36B85CC 84991F19 7575D828 470A92AB
 	—— END LICENSE ——
 
 	sudo apt autoremove
@@ -91,6 +109,7 @@ PROBLEMS :-
 
 	sudo gedit /etc/default/grub
 	change GRUB_DEFAULT=0 from 0 to any number(5), corresponding to the entry in the Grub bootup menu (first entry is 0, second is 1, etc.)
+	
 	sudo update-grub
 
 3). dpkg lock problem : (answer 2)

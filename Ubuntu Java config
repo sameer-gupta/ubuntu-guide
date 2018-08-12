@@ -19,6 +19,21 @@ sudo update-alternatives --set javaws /usr/lib/jvm/java-8-oracle/bin/javaws
 
 java 7 :-
 
+follow this 
+https://stackoverflow.com/questions/22541853/oracle-java-7-installation-in-ubuntu-e-sub-process-usr-bin-dpkg-returned-an-er/22955890#22955890
+
+download JDK from:
+http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html
+
+
+sudo update-alternatives --install /usr/bin/java java /opt/jdk1.7.0_80/bin/java 1
+sudo update-alternatives --install /usr/bin/javac javac /opt/jdk1.7.0_80/bin/javac 1
+sudo update-alternatives --install /usr/lib/mozilla/plugins/libjavaplugin.so mozilla-javaplugin.so /opt/jdk1.7.0_80/jre/lib/amd64/libnpjp2.so 1
+sudo update-alternatives --set java /opt/jdk1.7.0_80/bin/java
+sudo update-alternatives --set javac /opt/jdk1.7.0_80/bin/javac
+sudo update-alternatives --set mozilla-javaplugin.so /opt/jdk1.7.0_80/jre/lib/amd64/libnpjp2.so
+
+
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt update
 sudo apt install oracle-java7-installer
@@ -30,7 +45,7 @@ Tomcat7 :-
 http://tecadmin.net/install-tomcat-7-on-ubuntu/#
 
 cd /opt
-sudo wget http://www.us.apache.org/dist/tomcat/tomcat-7/v7.0.69/bin/apache-tomcat-7.0.69.tar.gz
+sudo wget http://www.us.apache.org/dist/tomcat/tomcat-7/v7.0.82/bin/apache-tomcat-7.0.82.tar.gz
 sudo tar zxf apache-tomcat-7.0.69.tar.gz
 sudo mv apache-tomcat-7.0.69 tomcat7
 sudo rm apache-tomcat-7.0.69.tar.gz

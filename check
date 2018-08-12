@@ -1,0 +1,159 @@
+SAPPHIRE ENGINE :
+
+ssh sameer@207.148.127.73
+
+cat < last_run
+
+mysql -u root -p<password>
+
+use rin1;
+
+select * from rin1.compile_detail;
+select * from rin1.share_detail;
+
+select code_id, share_link, click from rin1.share_detail order by code_id+0;
+
+select lang, count(*) from rin1.compile_detail group by lang order by 2 desc; 
+
+
+
+## CAUTION !!! ##
+delete from rin1.share_detail where click='0' ;
+delete from rin1.share_detail where click='1' AND code_id < 6000;
+
+
+
+-- check table size --
+SELECT 
+     table_schema as `Database`, 
+     table_name AS `Table`, 
+     round(((data_length + index_length) / 1024 / 1024), 2) `Size in MB` 
+FROM information_schema.TABLES 
+ORDER BY (data_length + index_length) ;
+
+
+
+-- import and export database --
+
+Export ->
+mysqldump -u [username] -p [database name] > [database name].sql
+
+make db and tables first
+import - > 
+mysql -u [username] -p newdatabase < [database name].sql
+
+
+
+
+
+
+
+OCULIN :
+
+ssh sameer@45.77.169.33
+
+cat < last_run
+
+mysql -u root -p<password>
+
+use m;
+
+select click,link,org_url from link_detail;
+select click,link from link_detail;
+select id,link,org_url from link_detail;
+
+
+SELECT COUNT(*) FROM visit;
+
+
+
+-- check table size --
+
+SELECT 
+     table_schema as `Database`, 
+     table_name AS `Table`, 
+     round(((data_length + index_length) / 1024 / 1024), 2) `Size in MB` 
+FROM information_schema.TABLES 
+ORDER BY (data_length + index_length) ;
+
+
+
+
+
+
+-- import and export database --
+Export ->
+mysqldump -u [username] -p [database name] > [database name].sql
+
+make db and tables first
+import - > 
+mysql -u [username] -p newdatabase < [database name].sql
+
+
+
+
+
+-- Generic Queries --
+
+
+- UPDATE Queries
+
+UPDATE link_detail
+SET org_url='https://drive.google.com/open?id=0B13BCzILNfBoWGR0RjBlT1plWms'
+WHERE link="/resume";
+
+
+- SELECT Queries
+
+select click,link,org_url from link_detail;
+select click,link from link_detail;
+select id,link,org_url from link_detail;
+
+select * from link_detail ;
+
+select * from link_detail where org_url like 'http://google.com'; 
+
+select * from link_detail where link like '%divyanshu%';
+
+select * from link_detail where ip='103.231.89.30';
+
+SELECT * FROM link_detail WHERE
+org_url LIKE '%persiangendernetwork.org%'
+OR org_url LIKE '%0pe.kr%'
+OR org_url LIKE '%manage-paid-account.ga%'
+OR org_url LIKE '%system-mail-checked.cf%'
+OR org_url LIKE '%//system-mailed.ga%'
+OR org_url LIKE '%https://system-mailed.ml/?bs%';
+
+
+-DELETE Queries
+
+
+delete from link_detail where link like '/8oi';
+
+delete from link_detail where ip like '%203.78.118.23%';
+
+delete from link_detail where org_url like '%.talk4fun.net%';
+delete from link_detail where org_url like '%.igg.biz/%';
+delete from link_detail where org_url like '%//nirc.co/%';
+delete from link_detail where org_url like '%.top';
+delete from link_detail where org_url like 'http://twr.kr%';
+
+DELETE FROM link_detail WHERE
+org_url LIKE '%persiangendernetwork.org%'
+OR org_url LIKE '%0pe.kr%'
+OR org_url LIKE '%manage-paid-account.ga%'
+OR org_url LIKE '%system-mail-checked.cf%'
+OR org_url LIKE '%//system-mailed.ga%'
+OR org_url LIKE '%https://system-mailed.ml/?bs%';
+
+DELETE FROM link_detail WHERE
+link LIKE '%/8oi%'
+OR org_url LIKE '%0pe.kr%'
+OR org_url LIKE '%manage-paid-account.ga%'
+OR org_url LIKE '%system-mail-checked.cf%'
+OR org_url LIKE '%//system-mailed.ga%'
+OR org_url LIKE '%https://system-mailed.ml/?bs%';
+
+
+

@@ -1,0 +1,56 @@
+
+-- Show Add icons in Gnome Dash
+
+Install wmctrl:
+	sudo apt-get install wmctrl
+	cd $HOME
+	mkdir Icons
+	cd Icons
+	gedit show-desktop.sh
+
+Place this code in there and save the script, place the icon in the same directory:
+
+	#!/bin/bash
+	status="$(wmctrl -m | grep "showing the desktop" | sed -r 's/(.*)(ON|OFF)/\2/g')"
+
+	if [ $status == "ON" ]; then
+		wmctrl -k off
+	else
+		wmctrl -k on
+	fi
+
+Make it executable:	
+	chmod +x show-desktop.sh
+
+Create a new file in /usr/share/applications folder, called  show-desktop.desktop with this text:
+	
+	sudo gedit /usr/share/applications/show-desktop.desktop
+
+
+[Desktop Entry]
+Type=Application
+Name=Show Desktop
+Icon=show-desktop
+Exec=/home/sameer/Icons/show-desktop.sh
+Icon=/home/sameer/Icons/preferences-desktop-wallpaper.png
+
+
+Open the dash, search for show desktop and add it to the favorites.
+
+
+--- for windows icon
+
+
+
+Create a new file in /usr/share/applications folder, called  show-windows.desktop with this text:
+	
+	sudo gedit /usr/share/applications/show-windows.desktop
+
+
+[Desktop Entry]
+Type=Application
+Name=Show Windows
+Icon=show-windows
+Exec=nautilus /media/sameer/Windows/Sameer
+Icon=/home/sameer/Icons/drive-harddisk.png
+
